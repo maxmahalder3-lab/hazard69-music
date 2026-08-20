@@ -1,173 +1,172 @@
-<!DOCTYPE html>
+
+@<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>HAZARD 69</title>
+<title>HAZARD 69 OFFICIAL</title>
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+*{margin:0;padding:0;box-sizing:border-box}
 
 body{
-    background:#000;
-    color:white;
-    font-family:Arial, sans-serif;
-    overflow:hidden;
+  background:#000;
+  color:#fff;
+  font-family:Arial,sans-serif;
+  overflow:hidden;
 }
 
-.opening{
-    position:fixed;
-    inset:0;
-    background:
-        radial-gradient(circle at center,#171717 0%,#050505 55%,#000 100%);
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    z-index:10;
-    animation:fadeIn 1.5s ease;
+#opening{
+  position:fixed;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  background:radial-gradient(circle,#202020,#050505 55%,#000);
+  z-index:10;
 }
 
 .logo{
-    font-size:clamp(55px,15vw,130px);
-    font-weight:900;
-    letter-spacing:10px;
-    color:white;
-    text-shadow:
-        0 0 10px #fff,
-        0 0 25px #777,
-        0 0 50px #333;
-    animation:logoIn 2s ease;
+  font-size:clamp(55px,14vw,120px);
+  font-weight:900;
+  letter-spacing:10px;
+  text-shadow:0 0 10px #fff,0 0 30px #f00,0 0 60px #f00;
+  animation:logo 2s ease infinite alternate;
 }
 
 .subtitle{
-    margin-top:10px;
-    font-size:14px;
-    letter-spacing:6px;
-    color:#aaa;
-    animation:fadeUp 2s ease;
+  margin-top:12px;
+  letter-spacing:6px;
+  color:#aaa;
 }
 
 .enter{
-    margin-top:45px;
-    padding:16px 45px;
-    border:2px solid white;
-    background:transparent;
-    color:white;
-    font-size:16px;
-    font-weight:bold;
-    letter-spacing:4px;
-    cursor:pointer;
-    transition:.3s;
+  margin-top:45px;
+  padding:16px 42px;
+  border:2px solid #fff;
+  background:transparent;
+  color:#fff;
+  border-radius:40px;
+  font-weight:bold;
+  letter-spacing:3px;
+  cursor:pointer;
+  transition:.3s;
 }
 
 .enter:hover{
-    background:white;
-    color:black;
-    box-shadow:0 0 30px white;
+  background:#fff;
+  color:#000;
+  box-shadow:0 0 35px #fff;
 }
 
-.main{
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    background:linear-gradient(135deg,#050505,#171717,#000);
+#home{
+  display:none;
+  min-height:100vh;
+  padding:60px 20px;
+  text-align:center;
+  background:linear-gradient(135deg,#000,#180000,#000);
 }
 
-.main h1{
-    font-size:50px;
-    letter-spacing:8px;
+#home h1{
+  font-size:50px;
+  letter-spacing:8px;
+  text-shadow:0 0 25px red;
 }
 
-.hidden{
-    display:none;
+#home p{
+  margin-top:15px;
+  color:#aaa;
 }
 
-@keyframes logoIn{
-    0%{
-        opacity:0;
-        transform:scale(.5);
-        filter:blur(15px);
-    }
-    100%{
-        opacity:1;
-        transform:scale(1);
-        filter:blur(0);
-    }
+.buttons{
+  margin-top:40px;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:15px;
 }
 
-@keyframes fadeUp{
-    from{
-        opacity:0;
-        transform:translateY(20px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
+.btn{
+  display:inline-block;
+  padding:14px 25px;
+  border:1px solid #fff;
+  border-radius:30px;
+  color:#fff;
+  text-decoration:none;
+  transition:.3s;
 }
 
-@keyframes fadeIn{
-    from{opacity:0}
-    to{opacity:1}
+.btn:hover{
+  background:#fff;
+  color:#000;
+}
+
+@keyframes logo{
+  from{transform:scale(1)}
+  to{transform:scale(1.06)}
 }
 </style>
 </head>
 
 <body>
 
-<!-- BACKGROUND MUSIC -->
 <audio id="music" loop>
-    <source src="Alan%20Walker_%20Sabrina%20Carpenter%20_%20Farruko%20-%20On%20My%20Way(MP3_160K).mp3" type="audio/mpeg">
+<source src="Alan%20Walker_%20Sabrina%20Carpenter%20_%20Farruko%20-%20On%20My%20Way(MP3_160K).mp3" type="audio/mpeg">
 </audio>
 
-<!-- OPENING PAGE -->
-<div class="opening" id="opening">
+<section id="opening">
+  <div class="logo">HAZARD 69</div>
+  <div class="subtitle">OFFICIAL WEBSITE</div>
 
-    <div class="logo">HAZARD 69</div>
+  <button class="enter" onclick="enterSite()">
+    ENTER WEBSITE
+  </button>
+</section>
 
-    <div class="subtitle">
-        OFFICIAL WEBSITE
-    </div>
+<section id="home">
+  <h1>HAZARD 69</h1>
+  <p>WELCOME TO THE OFFICIAL WEBSITE</p>
 
-    <button class="enter" onclick="enterWebsite()">
-        ENTER WEBSITE
+  <div class="buttons">
+    <a class="btn"
+       href="https://www.instagram.com/hazard_69_official/"
+       target="_blank">
+       📸 INSTAGRAM
+    </a>
+
+    <a class="btn"
+       href="https://sites.google.com/view/hazard69official/home"
+       target="_blank">
+       🌐 OFFICIAL SITE
+    </a>
+
+    <button class="btn" onclick="toggleMusic()">
+       🎵 MUSIC
     </button>
-
-</div>
-
-<!-- MAIN WEBSITE -->
-<div class="main hidden" id="main">
-
-    <div>
-        <h1>HAZARD 69</h1>
-        <p>Welcome to the official website</p>
-    </div>
-
-</div>
+  </div>
+</section>
 
 <script>
+function enterSite(){
+  const music=document.getElementById("music");
 
-function enterWebsite(){
+  music.play().catch(()=>{});
 
-    const music = document.getElementById("music");
-
-    music.play().catch(function(){
-        console.log("Music playback requires user interaction.");
-    });
-
-    document.getElementById("opening").style.display = "none";
-    document.getElementById("main").classList.remove("hidden");
+  document.getElementById("opening").style.display="none";
+  document.getElementById("home").style.display="block";
 }
 
+function toggleMusic(){
+  const music=document.getElementById("music");
+
+  if(music.paused){
+    music.play().catch(()=>{});
+  }else{
+    music.pause();
+  }
+}
 </script>
 
 </body>
