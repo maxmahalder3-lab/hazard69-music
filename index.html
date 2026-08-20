@@ -6,12 +6,7 @@
 
 <title>HAZARD 69 OFFICIAL</title>
 
-<meta name="description"
-content="HAZARD 69 OFFICIAL — Dream. Ride. Hustle. Repeat.">
-
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800;900&display=swap');
-
 *{
   margin:0;
   padding:0;
@@ -23,481 +18,333 @@ html{
 }
 
 body{
-  background:#050505;
-  color:#fff;
-  font-family:Orbitron,Arial,sans-serif;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#050507;
+  color:white;
   overflow-x:hidden;
 }
 
-/* ================= BACKGROUND ================= */
+/* =========================
+   LOGO ANIMATION INTRO
+========================= */
 
-body:before{
-  content:"";
+#logoIntro{
   position:fixed;
   inset:0;
-  z-index:-3;
-  background:
-    radial-gradient(circle at 50% 35%,rgba(255,0,0,.25),transparent 35%),
-    radial-gradient(circle at 20% 80%,rgba(120,0,0,.15),transparent 35%),
-    #020202;
+  z-index:99999;
+  background:#000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  opacity:1;
+  visibility:visible;
+  transition:opacity 1s ease,visibility 1s ease;
 }
 
-body:after{
-  content:"";
-  position:fixed;
-  inset:0;
-  z-index:-2;
-  background:
-    linear-gradient(rgba(255,0,0,.025) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,0,0,.025) 1px,transparent 1px);
-  background-size:50px 50px;
+#logoIntro.hide{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
 }
 
-/* ================= HEADER ================= */
+#logoVideo{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  background:#000;
+}
+
+#skipIntro{
+  position:absolute;
+  right:20px;
+  bottom:20px;
+  padding:11px 18px;
+  border:1px solid #ff174f;
+  border-radius:30px;
+  background:rgba(0,0,0,.65);
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+/* =========================
+   HEADER
+========================= */
 
 header{
   position:fixed;
   top:0;
   left:0;
-  width:100%;
-  height:70px;
+  right:0;
   z-index:1000;
+  background:rgba(5,5,7,.75);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,23,79,.3);
+}
+
+.nav{
+  max-width:1100px;
+  margin:auto;
+  padding:16px 22px;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:0 6%;
-  background:rgba(0,0,0,.82);
-  backdrop-filter:blur(12px);
-  border-bottom:1px solid rgba(255,0,0,.35);
 }
 
-.brand{
-  font-size:22px;
+.logo{
+  font-size:21px;
   font-weight:900;
-  letter-spacing:2px;
-  text-shadow:0 0 12px red;
+  letter-spacing:3px;
 }
 
-.brand span{
-  color:#ff1010;
-}
-
-nav{
-  display:flex;
-  gap:28px;
+.logo span{
+  color:#ff174f;
 }
 
 nav a{
-  color:#ddd;
+  color:white;
   text-decoration:none;
-  font-size:12px;
-  font-weight:700;
+  margin-left:18px;
+  font-size:14px;
   transition:.3s;
 }
 
 nav a:hover{
-  color:#ff1515;
-  text-shadow:0 0 12px red;
+  color:#ff174f;
 }
 
-/* ================= HERO ================= */
+/* =========================
+   HERO
+========================= */
 
 .hero{
   min-height:100vh;
-  padding:120px 20px 70px;
   display:flex;
-  align-items:center;
   justify-content:center;
+  align-items:center;
   text-align:center;
+  padding:120px 20px 60px;
   position:relative;
 }
 
 .hero-content{
   max-width:850px;
-  animation:heroIn 1.5s ease;
-}
-
-@keyframes heroIn{
-  from{
-    opacity:0;
-    transform:translateY(40px) scale(.95);
-  }
-  to{
-    opacity:1;
-    transform:none;
-  }
-}
-
-/* CSS 3D LOGO */
-
-.logo3d{
   position:relative;
+  z-index:2;
+}
+
+.badge{
   display:inline-block;
-  margin-bottom:20px;
-  transform:perspective(700px) rotateX(8deg);
-  animation:logoFloat 3s ease-in-out infinite;
-}
-
-@keyframes logoFloat{
-  0%,100%{transform:perspective(700px) rotateX(8deg) translateY(0)}
-  50%{transform:perspective(700px) rotateX(8deg) translateY(-10px)}
-}
-
-.logo-main{
-  font-size:clamp(48px,10vw,105px);
-  font-weight:900;
-  font-style:italic;
-  letter-spacing:4px;
-  color:#eee;
-  text-shadow:
-    3px 3px 0 #555,
-    6px 6px 0 #222,
-    0 0 15px #fff,
-    0 0 35px #ff0000;
-}
-
-.logo-main span{
-  color:#ff0808;
-  text-shadow:
-    3px 3px 0 #650000,
-    0 0 15px red,
-    0 0 40px red;
-}
-
-.crown{
-  font-size:65px;
-  line-height:1;
-  filter:drop-shadow(0 0 15px red);
-  animation:crownGlow 1.8s infinite alternate;
-}
-
-@keyframes crownGlow{
-  from{filter:drop-shadow(0 0 5px red)}
-  to{filter:drop-shadow(0 0 25px red)}
-}
-
-.subtitle{
-  letter-spacing:10px;
-  color:#ccc;
-  font-size:13px;
-  margin:15px 0;
-}
-
-.subtitle b{
-  color:red;
-}
-
-.tagline{
-  color:#999;
+  padding:8px 15px;
+  border:1px solid #ff174f;
+  border-radius:30px;
+  color:#ff6688;
   font-size:12px;
-  letter-spacing:5px;
-  margin-bottom:35px;
+  letter-spacing:2px;
 }
 
-/* ================= BUTTONS ================= */
+h1{
+  font-size:clamp(55px,12vw,120px);
+  margin:25px 0 18px;
+  letter-spacing:5px;
+  text-shadow:0 0 30px rgba(255,23,79,.7);
+}
+
+h1 span{
+  color:#ff174f;
+}
+
+.hero p{
+  max-width:620px;
+  margin:auto;
+  color:#aaa;
+  font-size:17px;
+  line-height:1.6;
+}
+
+.buttons{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:30px;
+}
 
 .btn{
   display:inline-block;
-  padding:15px 35px;
-  margin:7px;
-  color:#fff;
-  text-decoration:none;
-  border:1px solid red;
+  padding:15px 27px;
   border-radius:40px;
-  background:rgba(255,0,0,.08);
-  box-shadow:0 0 15px rgba(255,0,0,.25);
-  font-size:12px;
-  font-weight:800;
-  letter-spacing:2px;
-  cursor:pointer;
+  color:white;
+  text-decoration:none;
+  font-weight:bold;
+  border:1px solid #ff174f;
+  background:linear-gradient(90deg,#ff174f,#7900ff);
+  box-shadow:0 0 25px rgba(255,23,79,.3);
   transition:.3s;
 }
 
 .btn:hover{
-  background:red;
-  box-shadow:
-    0 0 15px red,
-    0 0 40px rgba(255,0,0,.6);
-  transform:translateY(-3px);
+  transform:translateY(-4px) scale(1.03);
+  box-shadow:0 0 40px rgba(255,23,79,.6);
 }
 
-/* ================= MUSIC ================= */
-
-.music-box{
-  position:fixed;
-  right:20px;
-  bottom:20px;
-  z-index:999;
+.btn.secondary{
+  background:transparent;
 }
 
-.music-btn{
-  width:58px;
-  height:58px;
+/* =========================
+   GLOW BACKGROUND
+========================= */
+
+.glow{
+  position:absolute;
+  width:300px;
+  height:300px;
   border-radius:50%;
-  border:1px solid red;
-  background:#090909;
-  color:#fff;
-  font-size:20px;
-  cursor:pointer;
-  box-shadow:0 0 15px rgba(255,0,0,.5);
-  transition:.3s;
+  filter:blur(100px);
+  opacity:.25;
 }
 
-.music-btn.playing{
-  background:red;
-  box-shadow:
-    0 0 15px red,
-    0 0 35px red;
-  animation:pulse 1s infinite;
+.glow1{
+  background:#ff174f;
+  left:0;
+  top:20%;
 }
 
-@keyframes pulse{
-  50%{transform:scale(1.08)}
+.glow2{
+  background:#7000ff;
+  right:0;
+  bottom:10%;
 }
 
-/* ================= CARDS ================= */
+/* =========================
+   SECTIONS
+========================= */
 
 section{
-  padding:80px 6%;
-}
-
-.section-title{
-  text-align:center;
-  margin-bottom:45px;
-}
-
-.section-title h2{
-  font-size:32px;
-}
-
-.section-title span{
-  color:red;
-}
-
-.section-title p{
-  color:#777;
-  font-size:11px;
-  margin-top:10px;
-  letter-spacing:2px;
-}
-
-.cards{
   max-width:1100px;
   margin:auto;
+  padding:90px 22px;
+}
+
+.title{
+  text-align:center;
+  font-size:35px;
+  margin-bottom:12px;
+}
+
+.subtitle{
+  text-align:center;
+  color:#999;
+  margin-bottom:35px;
+}
+
+.grid{
   display:grid;
-  grid-template-columns:repeat(4,1fr);
+  grid-template-columns:repeat(3,1fr);
   gap:18px;
 }
 
 .card{
-  padding:35px 20px;
-  text-align:center;
-  border:1px solid rgba(255,0,0,.25);
-  border-radius:12px;
-  background:linear-gradient(145deg,#101010,#050505);
-  transition:.35s;
-}
-
-.card:hover{
-  transform:translateY(-8px);
-  border-color:red;
-  box-shadow:0 10px 40px rgba(255,0,0,.2);
-}
-
-.icon{
-  font-size:35px;
-  margin-bottom:18px;
-  filter:drop-shadow(0 0 8px red);
+  padding:26px;
+  border-radius:20px;
+  background:rgba(255,255,255,.045);
+  border:1px solid rgba(255,255,255,.1);
+  backdrop-filter:blur(10px);
 }
 
 .card h3{
-  font-size:14px;
+  color:#ff6688;
   margin-bottom:12px;
 }
 
 .card p{
-  color:#888;
-  font-family:Arial,sans-serif;
-  font-size:13px;
-  line-height:1.7;
-}
-
-/* ================= ABOUT ================= */
-
-.about{
-  max-width:1100px;
-  margin:auto;
-  border:1px solid rgba(255,0,0,.25);
-  border-radius:15px;
-  padding:50px;
-  background:
-    linear-gradient(120deg,rgba(255,0,0,.12),transparent 50%),
-    #080808;
-}
-
-.about h2{
-  font-size:35px;
-  margin-bottom:20px;
-}
-
-.about h2 span{
-  color:red;
-}
-
-.about p{
-  max-width:700px;
   color:#aaa;
-  font-family:Arial,sans-serif;
-  line-height:1.9;
+  line-height:1.6;
 }
 
-/* ================= SOCIAL ================= */
+/* =========================
+   APK
+========================= */
 
-.social-grid{
-  max-width:1000px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:20px;
-}
-
-.social{
-  border:1px solid rgba(255,0,0,.3);
-  border-radius:15px;
-  padding:30px;
-  background:#090909;
-  display:flex;
-  align-items:center;
-  gap:20px;
-  transition:.3s;
-}
-
-.social:hover{
-  border-color:red;
-  box-shadow:0 0 30px rgba(255,0,0,.15);
-}
-
-.social-icon{
-  width:65px;
-  height:65px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:#111;
-  border:1px solid red;
-  font-size:28px;
-}
-
-.social h3{
-  font-size:14px;
-  margin-bottom:8px;
-}
-
-.social p{
-  color:#999;
-  font-family:Arial,sans-serif;
-  font-size:13px;
-}
-
-.social a{
-  color:#fff;
-  text-decoration:none;
-}
-
-.social a:hover{
-  color:red;
-}
-
-/* ================= CONTACT ================= */
-
-.contact{
+.download-card{
   text-align:center;
+  border-color:rgba(255,23,79,.45);
 }
 
-.contact-box{
-  max-width:700px;
-  margin:auto;
-  padding:40px;
-  border:1px solid rgba(255,0,0,.3);
-  border-radius:15px;
-  background:#090909;
+.version{
+  font-size:23px;
+  font-weight:bold;
+  margin:12px 0;
 }
 
-.email{
-  color:#fff;
-  font-family:Arial,sans-serif;
-  margin:15px 0 25px;
+/* =========================
+   SOCIAL
+========================= */
+
+.socials{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:12px;
 }
 
-/* ================= FOOTER ================= */
+/* =========================
+   FOOTER
+========================= */
 
 footer{
-  padding:40px 20px;
   text-align:center;
-  border-top:1px solid rgba(255,0,0,.2);
-  background:#020202;
+  color:#777;
+  padding:35px 20px;
+  border-top:1px solid rgba(255,255,255,.1);
 }
 
-footer .brand{
-  margin-bottom:12px;
+/* =========================
+   MUSIC BUTTON
+========================= */
+
+#musicButton{
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  z-index:2000;
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  border:1px solid #ff174f;
+  background:#0b0b0f;
+  color:white;
+  font-size:19px;
+  cursor:pointer;
+  box-shadow:0 0 20px rgba(255,23,79,.3);
 }
 
-footer p{
-  color:#555;
-  font-family:Arial,sans-serif;
-  font-size:12px;
-}
+/* =========================
+   MOBILE
+========================= */
 
-/* ================= MOBILE ================= */
+@media(max-width:760px){
 
-@media(max-width:800px){
-
-  header{
-    padding:0 20px;
+  .nav{
+    padding:14px 15px;
   }
 
-  nav{
-    display:none;
+  .logo{
+    font-size:16px;
   }
 
-  .cards{
-    grid-template-columns:1fr 1fr;
+  nav a{
+    margin-left:8px;
+    font-size:11px;
   }
 
-  .social-grid{
+  .grid{
     grid-template-columns:1fr;
   }
 
-  .about{
-    padding:30px 20px;
-  }
-
-  section{
-    padding:65px 20px;
-  }
-
-  .subtitle{
-    letter-spacing:5px;
-  }
-}
-
-@media(max-width:500px){
-
-  .cards{
-    grid-template-columns:1fr;
-  }
-
-  .logo-main{
-    font-size:48px;
-  }
-
-  .crown{
-    font-size:45px;
-  }
-
-  .tagline{
-    letter-spacing:2px;
+  .hero p{
+    font-size:15px;
   }
 }
 </style>
@@ -505,315 +352,394 @@ footer p{
 
 <body>
 
-<!-- HEADER -->
-<header>
-
-  <div class="brand">
-    HAZARD <span>69</span>
-  </div>
-
-  <nav>
-    <a href="#home">HOME</a>
-    <a href="#about">ABOUT</a>
-    <a href="#music">MUSIC</a>
-    <a href="#gallery">GALLERY</a>
-    <a href="#contact">CONTACT</a>
-  </nav>
-
-</header>
-
-
-<!-- HERO -->
-<section class="hero" id="home">
-
-  <div class="hero-content">
-
-    <div class="logo3d">
-
-      <div class="crown">♛</div>
-
-      <div class="logo-main">
-        HAZARD <span>69</span>
-      </div>
-
-    </div>
-
-    <div class="subtitle">
-      O F F I C I A L
-    </div>
-
-    <div class="tagline">
-      DREAM <b>•</b> RIDE <b>•</b> HUSTLE <b>•</b> REPEAT
-    </div>
-
-    <a href="#about" class="btn">
-      ENTER WEBSITE
-    </a>
-
-  </div>
-
-</section>
-
-
-<!-- FEATURE CARDS -->
-<section id="music">
-
-  <div class="section-title">
-    <h2>HAZARD <span>69</span></h2>
-    <p>WELCOME TO THE OFFICIAL WEBSITE</p>
-  </div>
-
-  <div class="cards">
-
-    <div class="card">
-      <div class="icon">♛</div>
-      <h3>OFFICIAL BRAND</h3>
-      <p>
-        HAZARD 69 is more than a name.
-        It's an identity built on dedication.
-      </p>
-    </div>
-
-    <div class="card">
-      <div class="icon">♫</div>
-      <h3>OFFICIAL MUSIC</h3>
-      <p>
-        Listen to the music and enjoy
-        the HAZARD 69 vibe.
-      </p>
-    </div>
-
-    <div class="card" id="gallery">
-      <div class="icon">▣</div>
-      <h3>GALLERY</h3>
-      <p>
-        Explore exclusive photos,
-        designs and moments.
-      </p>
-    </div>
-
-    <div class="card">
-      <div class="icon">♟</div>
-      <h3>STAY CONNECTED</h3>
-      <p>
-        Follow HAZARD 69 and stay
-        connected with every update.
-      </p>
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- ABOUT -->
-<section id="about">
-
-  <div class="about">
-
-    <h2>
-      ABOUT <span>HAZARD 69</span>
-    </h2>
-
-    <p>
-      HAZARD 69 is a movement, a lifestyle and a digital identity.
-      Driven by dreams, powered by passion and focused on creating
-      something different.
-    </p>
-
-    <br>
-
-    <a href="#contact" class="btn">
-      CONTACT US
-    </a>
-
-  </div>
-
-</section>
-
-
-<!-- SOCIAL -->
-<section>
-
-  <div class="section-title">
-    <h2>STAY <span>CONNECTED</span></h2>
-    <p>FOLLOW HAZARD 69 OFFICIAL</p>
-  </div>
-
-  <div class="social-grid">
-
-    <!-- INSTAGRAM -->
-    <div class="social">
-
-      <div class="social-icon">
-        📷
-      </div>
-
-      <div>
-        <h3>INSTAGRAM</h3>
-
-        <p>
-          <a
-          href="https://www.instagram.com/hazard_69_official/"
-          target="_blank"
-          rel="noopener">
-          @hazard_69_official
-          </a>
-        </p>
-
-        <br>
-
-        <a
-        class="btn"
-        href="https://www.instagram.com/hazard_69_official/"
-        target="_blank"
-        rel="noopener">
-        FOLLOW →
-        </a>
-
-      </div>
-
-    </div>
-
-
-    <!-- EMAIL -->
-    <div class="social">
-
-      <div class="social-icon">
-        ✉
-      </div>
-
-      <div>
-
-        <h3>EMAIL</h3>
-
-        <p>
-          <a href="mailto:maxmahalder3@gmail.com">
-            maxmahalder3@gmail.com
-          </a>
-        </p>
-
-        <br>
-
-        <a
-        class="btn"
-        href="mailto:maxmahalder3@gmail.com">
-        SEND EMAIL →
-        </a>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- CONTACT -->
-<section id="contact" class="contact">
-
-  <div class="section-title">
-
-    <h2>
-      CONTACT <span>HAZARD 69</span>
-    </h2>
-
-    <p>
-      WE'D LOVE TO HEAR FROM YOU
-    </p>
-
-  </div>
-
-  <div class="contact-box">
-
-    <h3>GET IN TOUCH</h3>
-
-    <div class="email">
-      maxmahalder3@gmail.com
-    </div>
-
-    <a
-    class="btn"
-    href="mailto:maxmahalder3@gmail.com">
-      EMAIL US
-    </a>
-
-  </div>
-
-</section>
-
-
-<!-- FOOTER -->
-<footer>
-
-  <div class="brand">
-    HAZARD <span>69</span>
-  </div>
-
-  <p>
-    © 2026 HAZARD 69 OFFICIAL
-  </p>
-
-  <p>
-    Dream it. Ride it. Hustle for it. Repeat it.
-  </p>
-
-</footer>
-
-
-<!-- MUSIC -->
-<audio id="bgMusic" loop preload="auto">
-  <source src="music.mp3" type="audio/mpeg">
-</audio>
-
-<div class="music-box">
-
-  <button
-  id="musicBtn"
-  class="music-btn"
-  aria-label="Music control">
-    🎵
+<!-- ==================================
+     HAZARD 69 LOGO ANIMATION
+================================== -->
+
+<div id="logoIntro">
+
+  <video
+    id="logoVideo"
+    autoplay
+    muted
+    playsinline
+    preload="auto">
+
+    <source
+      src="HAZARD_69_OFFICIAL_logo_animation_with_sound.mp4"
+      type="video/mp4">
+
+  </video>
+
+  <button id="skipIntro">
+    SKIP INTRO
   </button>
 
 </div>
 
 
+<!-- ==================================
+     HEADER
+================================== -->
+
+<header>
+
+  <div class="nav">
+
+    <div class="logo">
+      HAZARD <span>69</span>
+    </div>
+
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#download">APK</a>
+      <a href="#about">About</a>
+      <a href="#social">Social</a>
+    </nav>
+
+  </div>
+
+</header>
+
+
+<!-- ==================================
+     HOME
+================================== -->
+
+<section class="hero" id="home">
+
+  <div class="glow glow1"></div>
+  <div class="glow glow2"></div>
+
+  <div class="hero-content">
+
+    <div class="badge">
+      OFFICIAL WEBSITE
+    </div>
+
+    <h1>
+      HAZARD <span>69</span>
+    </h1>
+
+    <p>
+      Welcome to the official HAZARD 69 website.
+      Find APK downloads, updates and official
+      social media links in one place.
+    </p>
+
+    <div class="buttons">
+
+      <a
+        href="#download"
+        class="btn">
+        📥 DOWNLOAD APK
+      </a>
+
+      <a
+        href="#social"
+        class="btn secondary">
+        FOLLOW US
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ==================================
+     APK DOWNLOAD
+================================== -->
+
+<section id="download">
+
+  <h2 class="title">
+    APK DOWNLOAD
+  </h2>
+
+  <p class="subtitle">
+    Download the latest HAZARD 69 APK.
+  </p>
+
+  <div class="card download-card">
+
+    <h3>
+      HAZARD 69 APK
+    </h3>
+
+    <div class="version">
+      Latest Version
+    </div>
+
+    <p>
+      Version: 1.0
+    </p>
+
+    <br>
+
+    <a
+      href="YOUR_APK_DOWNLOAD_LINK"
+      class="btn"
+      download>
+
+      📥 DOWNLOAD APK
+
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- ==================================
+     ABOUT
+================================== -->
+
+<section id="about">
+
+  <h2 class="title">
+    ABOUT HAZARD 69
+  </h2>
+
+  <p class="subtitle">
+    Your official HAZARD 69 information hub.
+  </p>
+
+  <div class="grid">
+
+    <div class="card">
+
+      <h3>⚡ FAST</h3>
+
+      <p>
+        Clean, fast and mobile-friendly
+        website experience.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <h3>🔒 OFFICIAL</h3>
+
+      <p>
+        Use this website for official
+        announcements and links.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <h3>🚀 UPDATES</h3>
+
+      <p>
+        Add new APK versions, news
+        and important updates here.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ==================================
+     SOCIAL MEDIA
+================================== -->
+
+<section id="social">
+
+  <h2 class="title">
+    SOCIAL MEDIA
+  </h2>
+
+  <p class="subtitle">
+    Follow HAZARD 69 on social media.
+  </p>
+
+  <div class="socials">
+
+    <a
+      class="btn"
+      href="https://www.instagram.com/hazard_69_official/"
+      target="_blank">
+      Instagram
+    </a>
+
+    <a
+      class="btn secondary"
+      href="YOUR_YOUTUBE_LINK"
+      target="_blank">
+      YouTube
+    </a>
+
+    <a
+      class="btn secondary"
+      href="YOUR_TELEGRAM_LINK"
+      target="_blank">
+      Telegram
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- ==================================
+     FOOTER
+================================== -->
+
+<footer>
+
+  © 2026 HAZARD 69 OFFICIAL
+  <br>
+  All Rights Reserved
+
+</footer>
+
+
+<!-- ==================================
+     MUSIC BUTTON
+================================== -->
+
+<button id="musicButton">
+  🔊
+</button>
+
+
+<!-- Background music:
+     Put music.mp3 in the same folder
+     as index.html
+-->
+
+<audio
+  id="bgMusic"
+  loop
+  preload="auto">
+
+  <source
+    src="music.mp3"
+    type="audio/mpeg">
+
+</audio>
+
+
 <script>
 
-/* ================= MUSIC PLAYER ================= */
+/* ==================================
+   LOGO INTRO
+================================== */
 
-const music = document.getElementById("bgMusic");
-const musicBtn = document.getElementById("musicBtn");
+const intro =
+document.getElementById("logoIntro");
 
-let playing = false;
+const video =
+document.getElementById("logoVideo");
 
-musicBtn.addEventListener("click", async () => {
+const skip =
+document.getElementById("skipIntro");
 
-  try {
 
-    if (!playing) {
+function closeIntro(){
+
+  intro.classList.add("hide");
+
+  setTimeout(function(){
+
+    intro.style.display="none";
+
+  },1000);
+
+}
+
+
+/* Animation শেষ হলে website দেখাবে */
+
+video.addEventListener(
+  "ended",
+  closeIntro
+);
+
+
+/* Skip button */
+
+skip.addEventListener(
+  "click",
+  closeIntro
+);
+
+
+/* Video load না হলে intro বন্ধ */
+
+video.addEventListener(
+  "error",
+  function(){
+
+    setTimeout(
+      closeIntro,
+      1000
+    );
+
+  }
+);
+
+
+/* ==================================
+   MUSIC
+================================== */
+
+const music =
+document.getElementById("bgMusic");
+
+const musicButton =
+document.getElementById("musicButton");
+
+let musicPlaying=false;
+
+
+musicButton.onclick =
+async function(){
+
+  if(!musicPlaying){
+
+    try{
 
       await music.play();
 
-      playing = true;
+      musicPlaying=true;
 
-      musicBtn.textContent = "🔊";
-      musicBtn.classList.add("playing");
-
-    } else {
-
-      music.pause();
-
-      playing = false;
-
-      musicBtn.textContent = "🎵";
-      musicBtn.classList.remove("playing");
+      musicButton.textContent="🔇";
 
     }
 
-  } catch(error) {
+    catch(error){
 
-    alert("Music could not be played. Please check that music.mp3 is in the same folder as index.html.");
+      alert(
+        "music.mp3 ফাইলটি index.html-এর একই folder-এ রাখুন।"
+      );
 
-    console.log(error);
+    }
+
+  }
+
+  else{
+
+    music.pause();
+
+    musicPlaying=false;
+
+    musicButton.textContent="🔊";
+
+  }
+
+};
+
+</script>
+
+</body>
+</html>
