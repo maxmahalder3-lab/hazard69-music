@@ -8,7 +8,186 @@
 <title>HAZARD 69 | Official</title>
 
 <style>
+/* =====================================================
+   LOGIN / PROFILE UI
+===================================================== */
 
+.profile-btn{
+  padding:10px 15px;
+  border-radius:50px;
+  border:1px solid rgba(255,23,79,.4);
+  background:linear-gradient(100deg,#ff174f,#792cff);
+  color:white;
+  font-size:11px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+
+.login-box{
+
+  position:fixed;
+  inset:0;
+
+  background:rgba(0,0,0,.75);
+  backdrop-filter:blur(15px);
+
+  display:none;
+  align-items:center;
+  justify-content:center;
+
+  z-index:10000;
+
+}
+
+
+.login-card{
+
+  width:min(350px,90%);
+
+  padding:35px;
+
+  border-radius:25px;
+
+  background:
+  rgba(10,10,15,.95);
+
+  border:
+  1px solid rgba(255,23,79,.35);
+
+  box-shadow:
+  0 0 50px rgba(255,23,79,.3);
+
+  text-align:center;
+
+}
+
+
+.login-card h2{
+
+  margin-bottom:25px;
+
+}
+
+
+.login-card input{
+
+  width:100%;
+
+  padding:14px;
+
+  margin:8px 0;
+
+  border-radius:12px;
+
+  border:1px solid rgba(255,255,255,.15);
+
+  background:#050509;
+
+  color:white;
+
+  outline:none;
+
+}
+
+
+.password-box{
+
+  display:flex;
+  gap:8px;
+
+}
+
+
+.password-box button{
+
+  width:45px;
+
+  border:none;
+
+  border-radius:12px;
+
+  background:#ff174f;
+
+  color:white;
+
+  cursor:pointer;
+
+}
+
+
+.login-submit{
+
+  width:100%;
+
+  margin-top:15px;
+
+  padding:14px;
+
+  border:none;
+
+  border-radius:50px;
+
+  background:
+  linear-gradient(100deg,#ff174f,#792cff);
+
+  color:white;
+
+  font-weight:bold;
+
+  cursor:pointer;
+
+}
+
+
+.profile-card{
+
+  display:none;
+
+  margin-top:15px;
+
+}
+
+
+.profile-img{
+
+  width:80px;
+  height:80px;
+
+  border-radius:50%;
+
+  background:
+  linear-gradient(135deg,#ff174f,#792cff);
+
+  margin:auto;
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  font-size:35px;
+
+}
+
+
+.logout{
+
+  margin-top:15px;
+
+  padding:10px 25px;
+
+  border-radius:50px;
+
+  background:#111;
+
+  color:white;
+
+  border:1px solid #ff174f;
+
+  cursor:pointer;
+
+}
 :root{
   --red:#ff174f;
   --pink:#ff4d75;
@@ -332,12 +511,21 @@ nav a{
 
   border-radius:10px;
 
-  transition:.25s;
-
+  transition:.25s
 }
 
-nav a:hover{
+nav a:hover{<nav id="nav">
 
+  <a href="#home">HOME</a>
+  <a href="#download">APK</a>
+  <a href="#features">FEATURES</a>
+  <a href="#updates">UPDATES</a>
+  <a href="#social">SOCIAL</a>
+
+</nav>
+<button class="profile-btn" onclick="openLogin()">
+  👤 PROFILE
+</button>
   color:#fff;
 
   background:
