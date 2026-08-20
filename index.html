@@ -20,15 +20,15 @@ html{
 body{
   font-family:Arial,Helvetica,sans-serif;
   background:#050507;
-  color:white;
+  color:#fff;
   overflow-x:hidden;
 }
 
 /* =========================
-   LOGO ANIMATION INTRO
+   INTRO SCREEN
 ========================= */
 
-#logoIntro{
+#intro{
   position:fixed;
   inset:0;
   z-index:99999;
@@ -36,14 +36,12 @@ body{
   display:flex;
   align-items:center;
   justify-content:center;
-  opacity:1;
-  visibility:visible;
-  transition:opacity 1s ease,visibility 1s ease;
+  overflow:hidden;
+  transition:opacity 1s ease;
 }
 
-#logoIntro.hide{
+#intro.hide{
   opacity:0;
-  visibility:hidden;
   pointer-events:none;
 }
 
@@ -54,17 +52,78 @@ body{
   background:#000;
 }
 
+/* FALLBACK LOGO */
+
+#fallbackLogo{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  background:#000;
+  animation:logoAppear 2.5s ease-in-out;
+}
+
+#fallbackLogo h1{
+  font-size:clamp(55px,14vw,130px);
+  font-weight:900;
+  letter-spacing:8px;
+  color:white;
+  text-shadow:
+    0 0 10px #ff174f,
+    0 0 25px #ff174f,
+    0 0 50px #ff174f;
+  animation:logoPulse 1.5s infinite alternate;
+}
+
+#fallbackLogo h1 span{
+  color:#ff174f;
+}
+
+#fallbackLogo p{
+  margin-top:20px;
+  color:#ff6688;
+  letter-spacing:5px;
+  font-size:13px;
+}
+
+@keyframes logoAppear{
+  from{
+    opacity:0;
+    transform:scale(.5);
+  }
+  to{
+    opacity:1;
+    transform:scale(1);
+  }
+}
+
+@keyframes logoPulse{
+  from{
+    transform:scale(1);
+    text-shadow:0 0 10px #ff174f;
+  }
+  to{
+    transform:scale(1.05);
+    text-shadow:
+      0 0 15px #ff174f,
+      0 0 40px #ff174f,
+      0 0 70px #ff174f;
+  }
+}
+
 #skipIntro{
   position:absolute;
   right:20px;
   bottom:20px;
+  z-index:5;
   padding:11px 18px;
   border:1px solid #ff174f;
   border-radius:30px;
-  background:rgba(0,0,0,.65);
-  color:white;
+  background:rgba(0,0,0,.7);
+  color:#fff;
   font-weight:bold;
-  cursor:pointer;
 }
 
 /* =========================
@@ -77,7 +136,7 @@ header{
   left:0;
   right:0;
   z-index:1000;
-  background:rgba(5,5,7,.75);
+  background:rgba(5,5,7,.8);
   backdrop-filter:blur(12px);
   border-bottom:1px solid rgba(255,23,79,.3);
 }
@@ -106,7 +165,6 @@ nav a{
   text-decoration:none;
   margin-left:18px;
   font-size:14px;
-  transition:.3s;
 }
 
 nav a:hover{
@@ -120,8 +178,8 @@ nav a:hover{
 .hero{
   min-height:100vh;
   display:flex;
-  justify-content:center;
   align-items:center;
+  justify-content:center;
   text-align:center;
   padding:120px 20px 60px;
   position:relative;
@@ -143,14 +201,14 @@ nav a:hover{
   letter-spacing:2px;
 }
 
-h1{
+.hero h1{
   font-size:clamp(55px,12vw,120px);
   margin:25px 0 18px;
   letter-spacing:5px;
   text-shadow:0 0 30px rgba(255,23,79,.7);
 }
 
-h1 span{
+.hero h1 span{
   color:#ff174f;
 }
 
@@ -184,37 +242,12 @@ h1 span{
 }
 
 .btn:hover{
-  transform:translateY(-4px) scale(1.03);
+  transform:translateY(-4px);
   box-shadow:0 0 40px rgba(255,23,79,.6);
 }
 
 .btn.secondary{
   background:transparent;
-}
-
-/* =========================
-   GLOW BACKGROUND
-========================= */
-
-.glow{
-  position:absolute;
-  width:300px;
-  height:300px;
-  border-radius:50%;
-  filter:blur(100px);
-  opacity:.25;
-}
-
-.glow1{
-  background:#ff174f;
-  left:0;
-  top:20%;
-}
-
-.glow2{
-  background:#7000ff;
-  right:0;
-  bottom:10%;
 }
 
 /* =========================
@@ -250,7 +283,6 @@ section{
   border-radius:20px;
   background:rgba(255,255,255,.045);
   border:1px solid rgba(255,255,255,.1);
-  backdrop-filter:blur(10px);
 }
 
 .card h3{
@@ -263,10 +295,6 @@ section{
   line-height:1.6;
 }
 
-/* =========================
-   APK
-========================= */
-
 .download-card{
   text-align:center;
   border-color:rgba(255,23,79,.45);
@@ -278,10 +306,6 @@ section{
   margin:12px 0;
 }
 
-/* =========================
-   SOCIAL
-========================= */
-
 .socials{
   display:flex;
   justify-content:center;
@@ -289,20 +313,12 @@ section{
   gap:12px;
 }
 
-/* =========================
-   FOOTER
-========================= */
-
 footer{
   text-align:center;
   color:#777;
   padding:35px 20px;
   border-top:1px solid rgba(255,255,255,.1);
 }
-
-/* =========================
-   MUSIC BUTTON
-========================= */
 
 #musicButton{
   position:fixed;
@@ -316,13 +332,7 @@ footer{
   background:#0b0b0f;
   color:white;
   font-size:19px;
-  cursor:pointer;
-  box-shadow:0 0 20px rgba(255,23,79,.3);
 }
-
-/* =========================
-   MOBILE
-========================= */
 
 @media(max-width:760px){
 
@@ -335,16 +345,12 @@ footer{
   }
 
   nav a{
-    margin-left:8px;
+    margin-left:7px;
     font-size:11px;
   }
 
   .grid{
     grid-template-columns:1fr;
-  }
-
-  .hero p{
-    font-size:15px;
   }
 }
 </style>
@@ -352,12 +358,13 @@ footer{
 
 <body>
 
-<!-- ==================================
-     HAZARD 69 LOGO ANIMATION
-================================== -->
+<!-- =========================
+     INTRO
+========================= -->
 
-<div id="logoIntro">
+<div id="intro">
 
+  <!-- VIDEO -->
   <video
     id="logoVideo"
     autoplay
@@ -371,6 +378,19 @@ footer{
 
   </video>
 
+  <!-- FALLBACK -->
+  <div id="fallbackLogo">
+
+    <h1>
+      HAZARD <span>69</span>
+    </h1>
+
+    <p>
+      OFFICIAL WEBSITE
+    </p>
+
+  </div>
+
   <button id="skipIntro">
     SKIP INTRO
   </button>
@@ -378,9 +398,9 @@ footer{
 </div>
 
 
-<!-- ==================================
+<!-- =========================
      HEADER
-================================== -->
+========================= -->
 
 <header>
 
@@ -402,14 +422,11 @@ footer{
 </header>
 
 
-<!-- ==================================
+<!-- =========================
      HOME
-================================== -->
+========================= -->
 
 <section class="hero" id="home">
-
-  <div class="glow glow1"></div>
-  <div class="glow glow2"></div>
 
   <div class="hero-content">
 
@@ -429,15 +446,11 @@ footer{
 
     <div class="buttons">
 
-      <a
-        href="#download"
-        class="btn">
+      <a href="#download" class="btn">
         📥 DOWNLOAD APK
       </a>
 
-      <a
-        href="#social"
-        class="btn secondary">
+      <a href="#social" class="btn secondary">
         FOLLOW US
       </a>
 
@@ -448,9 +461,9 @@ footer{
 </section>
 
 
-<!-- ==================================
-     APK DOWNLOAD
-================================== -->
+<!-- =========================
+     APK
+========================= -->
 
 <section id="download">
 
@@ -480,8 +493,7 @@ footer{
 
     <a
       href="YOUR_APK_DOWNLOAD_LINK"
-      class="btn"
-      download>
+      class="btn">
 
       📥 DOWNLOAD APK
 
@@ -492,9 +504,9 @@ footer{
 </section>
 
 
-<!-- ==================================
+<!-- =========================
      ABOUT
-================================== -->
+========================= -->
 
 <section id="about">
 
@@ -509,38 +521,27 @@ footer{
   <div class="grid">
 
     <div class="card">
-
       <h3>⚡ FAST</h3>
-
       <p>
         Clean, fast and mobile-friendly
         website experience.
       </p>
-
     </div>
 
-
     <div class="card">
-
       <h3>🔒 OFFICIAL</h3>
-
       <p>
-        Use this website for official
-        announcements and links.
+        Official announcements and
+        important links.
       </p>
-
     </div>
 
-
     <div class="card">
-
       <h3>🚀 UPDATES</h3>
-
       <p>
-        Add new APK versions, news
-        and important updates here.
+        Add new versions, news and
+        important updates here.
       </p>
-
     </div>
 
   </div>
@@ -548,9 +549,9 @@ footer{
 </section>
 
 
-<!-- ==================================
-     SOCIAL MEDIA
-================================== -->
+<!-- =========================
+     SOCIAL
+========================= -->
 
 <section id="social">
 
@@ -568,31 +569,33 @@ footer{
       class="btn"
       href="https://www.instagram.com/hazard_69_official/"
       target="_blank">
+
       Instagram
+
     </a>
 
     <a
       class="btn secondary"
       href="YOUR_YOUTUBE_LINK"
       target="_blank">
+
       YouTube
+
     </a>
 
     <a
       class="btn secondary"
       href="YOUR_TELEGRAM_LINK"
       target="_blank">
+
       Telegram
+
     </a>
 
   </div>
 
 </section>
 
-
-<!-- ==================================
-     FOOTER
-================================== -->
 
 <footer>
 
@@ -603,47 +606,42 @@ footer{
 </footer>
 
 
-<!-- ==================================
-     MUSIC BUTTON
-================================== -->
+<!-- MUSIC -->
 
 <button id="musicButton">
   🔊
 </button>
 
-
-<!-- Background music:
-     Put music.mp3 in the same folder
-     as index.html
--->
-
-<audio
-  id="bgMusic"
-  loop
-  preload="auto">
-
-  <source
-    src="music.mp3"
-    type="audio/mpeg">
-
+<audio id="bgMusic" loop preload="auto">
+  <source src="music.mp3" type="audio/mpeg">
 </audio>
 
 
 <script>
 
-/* ==================================
-   LOGO INTRO
-================================== */
+/* =========================
+   INTRO FIX
+========================= */
 
 const intro =
-document.getElementById("logoIntro");
+document.getElementById("intro");
 
 const video =
 document.getElementById("logoVideo");
 
+const fallback =
+document.getElementById("fallbackLogo");
+
 const skip =
 document.getElementById("skipIntro");
 
+
+/* শুরুতে fallback লুকানো */
+
+fallback.style.display = "none";
+
+
+/* Intro বন্ধ */
 
 function closeIntro(){
 
@@ -658,7 +656,7 @@ function closeIntro(){
 }
 
 
-/* Animation শেষ হলে website দেখাবে */
+/* ভিডিও শেষ হলে */
 
 video.addEventListener(
   "ended",
@@ -666,7 +664,61 @@ video.addEventListener(
 );
 
 
-/* Skip button */
+/* ভিডিও চালু হলে fallback বন্ধ */
+
+video.addEventListener(
+  "playing",
+  function(){
+
+    fallback.style.display="none";
+
+  }
+);
+
+
+/* ভিডিও load না হলে fallback */
+
+video.addEventListener(
+  "error",
+  function(){
+
+    video.style.display="none";
+
+    fallback.style.display="flex";
+
+    setTimeout(
+      closeIntro,
+      3500
+    );
+
+  }
+);
+
+
+/* 6 seconds-এর মধ্যে video না চললে
+   fallback দেখাবে */
+
+setTimeout(function(){
+
+  if(
+    video.readyState < 2
+  ){
+
+    video.style.display="none";
+
+    fallback.style.display="flex";
+
+    setTimeout(
+      closeIntro,
+      3500
+    );
+
+  }
+
+},6000);
+
+
+/* Skip */
 
 skip.addEventListener(
   "click",
@@ -674,24 +726,9 @@ skip.addEventListener(
 );
 
 
-/* Video load না হলে intro বন্ধ */
-
-video.addEventListener(
-  "error",
-  function(){
-
-    setTimeout(
-      closeIntro,
-      1000
-    );
-
-  }
-);
-
-
-/* ==================================
+/* =========================
    MUSIC
-================================== */
+========================= */
 
 const music =
 document.getElementById("bgMusic");
@@ -700,7 +737,6 @@ const musicButton =
 document.getElementById("musicButton");
 
 let musicPlaying=false;
-
 
 musicButton.onclick =
 async function(){
@@ -717,17 +753,15 @@ async function(){
 
     }
 
-    catch(error){
+    catch(e){
 
       alert(
-        "music.mp3 ফাইলটি index.html-এর একই folder-এ রাখুন।"
+        "music.mp3 ফাইলটি upload করুন।"
       );
 
     }
 
-  }
-
-  else{
+  }else{
 
     music.pause();
 
