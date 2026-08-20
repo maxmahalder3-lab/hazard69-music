@@ -52,17 +52,62 @@ body{
   background:#000;
 }
 
-/* FALLBACK LOGO */
+/* ENTER WEBSITE */
+
+#enterWebsite{
+  position:absolute;
+  left:50%;
+  bottom:70px;
+  transform:translateX(-50%);
+  z-index:10;
+
+  padding:16px 38px;
+  border:none;
+  border-radius:50px;
+
+  background:linear-gradient(90deg,#ff174f,#7900ff);
+  color:white;
+
+  font-size:16px;
+  font-weight:900;
+  letter-spacing:2px;
+
+  box-shadow:
+    0 0 20px rgba(255,23,79,.6),
+    0 0 50px rgba(121,0,255,.4);
+
+  cursor:pointer;
+
+  display:none;
+  animation:enterPulse 1.4s infinite alternate;
+}
+
+#enterWebsite:hover{
+  transform:translateX(-50%) scale(1.06);
+}
+
+@keyframes enterPulse{
+  from{
+    box-shadow:
+      0 0 15px rgba(255,23,79,.5);
+  }
+  to{
+    box-shadow:
+      0 0 35px rgba(255,23,79,.9),
+      0 0 70px rgba(121,0,255,.5);
+  }
+}
+
+/* FALLBACK */
 
 #fallbackLogo{
   position:absolute;
   inset:0;
-  display:flex;
+  display:none;
   flex-direction:column;
   align-items:center;
   justify-content:center;
   background:#000;
-  animation:logoAppear 2.5s ease-in-out;
 }
 
 #fallbackLogo h1{
@@ -74,7 +119,6 @@ body{
     0 0 10px #ff174f,
     0 0 25px #ff174f,
     0 0 50px #ff174f;
-  animation:logoPulse 1.5s infinite alternate;
 }
 
 #fallbackLogo h1 span{
@@ -86,44 +130,6 @@ body{
   color:#ff6688;
   letter-spacing:5px;
   font-size:13px;
-}
-
-@keyframes logoAppear{
-  from{
-    opacity:0;
-    transform:scale(.5);
-  }
-  to{
-    opacity:1;
-    transform:scale(1);
-  }
-}
-
-@keyframes logoPulse{
-  from{
-    transform:scale(1);
-    text-shadow:0 0 10px #ff174f;
-  }
-  to{
-    transform:scale(1.05);
-    text-shadow:
-      0 0 15px #ff174f,
-      0 0 40px #ff174f,
-      0 0 70px #ff174f;
-  }
-}
-
-#skipIntro{
-  position:absolute;
-  right:20px;
-  bottom:20px;
-  z-index:5;
-  padding:11px 18px;
-  border:1px solid #ff174f;
-  border-radius:30px;
-  background:rgba(0,0,0,.7);
-  color:#fff;
-  font-weight:bold;
 }
 
 /* =========================
@@ -352,6 +358,11 @@ footer{
   .grid{
     grid-template-columns:1fr;
   }
+
+  #enterWebsite{
+    bottom:50px;
+    width:80%;
+  }
 }
 </style>
 </head>
@@ -359,12 +370,11 @@ footer{
 <body>
 
 <!-- =========================
-     INTRO
+     OPENING ANIMATION
 ========================= -->
 
 <div id="intro">
 
-  <!-- VIDEO -->
   <video
     id="logoVideo"
     autoplay
@@ -372,13 +382,11 @@ footer{
     playsinline
     preload="auto">
 
-    <source
-      src="HAZARD_69_OFFICIAL_logo_animation_with_sound.mp4"
-      type="video/mp4">
+    <!-- তোমার GitHub-এর আসল MP4 -->
+    <source src="opening.mp4" type="video/mp4">
 
   </video>
 
-  <!-- FALLBACK -->
   <div id="fallbackLogo">
 
     <h1>
@@ -391,8 +399,9 @@ footer{
 
   </div>
 
-  <button id="skipIntro">
-    SKIP INTRO
+  <!-- Video শেষ হলে এটি দেখা যাবে -->
+  <button id="enterWebsite">
+    ENTER WEBSITE
   </button>
 
 </div>
@@ -606,21 +615,25 @@ footer{
 </footer>
 
 
-<!-- MUSIC -->
+<!-- =========================
+     BACKGROUND MUSIC
+========================= -->
 
 <button id="musicButton">
   🔊
 </button>
 
 <audio id="bgMusic" loop preload="auto">
+
   <source src="music.mp3" type="audio/mpeg">
+
 </audio>
 
 
 <script>
 
 /* =========================
-   INTRO FIX
+   INTRO
 ========================= */
 
 const intro =
@@ -632,114 +645,93 @@ document.getElementById("logoVideo");
 const fallback =
 document.getElementById("fallbackLogo");
 
-const skip =
-document.getElementById("skipIntro");
-
-
-/* শুরুতে fallback লুকানো */
-
-fallback.style.display = "none";
-
-
-/* Intro বন্ধ */
-
-function closeIntro(){
-
-  intro.classList.add("hide");
-
-  setTimeout(function(){
-
-    intro.style.display="none";
-
-  },1000);
-
-}
-
-
-/* ভিডিও শেষ হলে */
-
-video.addEventListener(
-  "ended",
-  closeIntro
-);
-
-
-/* ভিডিও চালু হলে fallback বন্ধ */
-
-video.addEventListener(
-  "playing",
-  function(){
-
-    fallback.style.display="none";
-
-  }
-);
-
-
-/* ভিডিও load না হলে fallback */
-
-video.addEventListener(
-  "error",
-  function(){
-
-    video.style.display="none";
-
-    fallback.style.display="flex";
-
-    setTimeout(
-      closeIntro,
-      3500
-    );
-
-  }
-);
-
-
-/* 6 seconds-এর মধ্যে video না চললে
-   fallback দেখাবে */
-
-setTimeout(function(){
-
-  if(
-    video.readyState < 2
-  ){
-
-    video.style.display="none";
-
-    fallback.style.display="flex";
-
-    setTimeout(
-      closeIntro,
-      3500
-    );
-
-  }
-
-},6000);
-
-
-/* Skip */
-
-skip.addEventListener(
-  "click",
-  closeIntro
-);
-
-
-/* =========================
-   MUSIC
-========================= */
+const enterButton =
+document.getElementById("enterWebsite");
 
 const music =
 document.getElementById("bgMusic");
 
+
+/* =========================
+   VIDEO START
+========================= */
+
+video.play().catch(function(){
+
+  console.log("Video autoplay blocked");
+
+});
+
+
+/* =========================
+   VIDEO FINISHED
+========================= */
+
+video.addEventListener("ended", function(){
+
+  enterButton.style.display = "block";
+
+});
+
+
+/* =========================
+   VIDEO ERROR
+========================= */
+
+video.addEventListener("error", function(){
+
+  video.style.display = "none";
+
+  fallback.style.display = "flex";
+
+  enterButton.style.display = "block";
+
+});
+
+
+/* =========================
+   ENTER WEBSITE
+========================= */
+
+enterButton.addEventListener("click", async function(){
+
+  /* Music শুরু */
+
+  try{
+
+    await music.play();
+
+  }catch(e){
+
+    console.log("Music autoplay blocked");
+
+  }
+
+
+  /* Intro fade */
+
+  intro.classList.add("hide");
+
+
+  setTimeout(function(){
+
+    intro.style.display = "none";
+
+  },1000);
+
+});
+
+
+/* =========================
+   MUSIC BUTTON
+========================= */
+
 const musicButton =
 document.getElementById("musicButton");
 
-let musicPlaying=false;
+let musicPlaying = false;
 
-musicButton.onclick =
-async function(){
+musicButton.addEventListener("click", async function(){
 
   if(!musicPlaying){
 
@@ -747,17 +739,13 @@ async function(){
 
       await music.play();
 
-      musicPlaying=true;
+      musicPlaying = true;
 
-      musicButton.textContent="🔇";
+      musicButton.textContent = "🔇";
 
-    }
+    }catch(e){
 
-    catch(e){
-
-      alert(
-        "music.mp3 ফাইলটি upload করুন।"
-      );
+      alert("music.mp3 ফাইলটি GitHub repository-তে আছে কিনা দেখুন।");
 
     }
 
@@ -765,13 +753,13 @@ async function(){
 
     music.pause();
 
-    musicPlaying=false;
+    musicPlaying = false;
 
-    musicButton.textContent="🔊";
+    musicButton.textContent = "🔊";
 
   }
 
-};
+});
 
 </script>
 
