@@ -7,358 +7,858 @@
 <title>HAZARD 69 OFFICIAL</title>
 
 <style>
+
 *{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
 }
 
 body{
-  background:#050505;
-  color:white;
-  font-family:Arial, sans-serif;
-  overflow-x:hidden;
+    background:#020202;
+    color:white;
+    font-family:Arial,Helvetica,sans-serif;
+    overflow-x:hidden;
 }
 
-/* OPENING */
+
+/* =========================
+   OPENING SCREEN
+========================= */
+
 #opening{
-  position:fixed;
-  inset:0;
-  background:
-    radial-gradient(circle at center,#222 0%,#080808 45%,#000 100%);
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  z-index:9999;
-  transition:1s;
+
+    position:fixed;
+    inset:0;
+
+    z-index:9999;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+
+    background:
+    radial-gradient(
+        circle at center,
+        #310000 0%,
+        #100000 35%,
+        #030303 75%,
+        #000 100%
+    );
+
+    transition:opacity 1.2s ease;
 }
 
-.logo{
-  width:230px;
-  max-width:70%;
-  animation:logoIn 2s ease forwards,
-            glow 2s infinite alternate;
+
+/* RED LIGHT */
+
+#opening::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:350px;
+    height:350px;
+
+    border-radius:50%;
+
+    background:#ff0000;
+
+    filter:blur(130px);
+
+    opacity:.20;
+
+    animation:redLight 3s infinite alternate;
 }
 
-@keyframes logoIn{
-  from{
-    opacity:0;
-    transform:scale(.3) rotate(-15deg);
-  }
-  to{
-    opacity:1;
-    transform:scale(1) rotate(0);
-  }
+
+@keyframes redLight{
+
+    from{
+        transform:scale(.7);
+        opacity:.12;
+    }
+
+    to{
+        transform:scale(1.4);
+        opacity:.28;
+    }
 }
 
-@keyframes glow{
-  from{
-    filter:drop-shadow(0 0 5px #fff);
-  }
-  to{
-    filter:drop-shadow(0 0 30px #fff);
-  }
+
+/* =========================
+   3D LOGO
+========================= */
+
+.logo-container{
+
+    position:relative;
+
+    width:min(75vw,520px);
+
+    perspective:1000px;
+
+    z-index:2;
+
+    animation:
+        logoEnter 2.2s cubic-bezier(.2,.8,.2,1)
+        forwards;
+
 }
+
+
+.logo-container img{
+
+    width:100%;
+
+    display:block;
+
+    transform-style:preserve-3d;
+
+    filter:
+
+        drop-shadow(0 3px 0 #333)
+
+        drop-shadow(0 6px 0 #222)
+
+        drop-shadow(0 10px 0 #111)
+
+        drop-shadow(0 0 12px #fff)
+
+        drop-shadow(0 0 35px #ff0000)
+
+        drop-shadow(0 0 70px rgba(255,0,0,.6));
+
+    animation:
+        logoFloat 4s ease-in-out infinite;
+}
+
+
+@keyframes logoEnter{
+
+    0%{
+
+        opacity:0;
+
+        transform:
+        perspective(1000px)
+        rotateX(80deg)
+        scale(.35);
+
+        filter:blur(20px);
+    }
+
+    70%{
+
+        opacity:1;
+
+        transform:
+        perspective(1000px)
+        rotateX(-8deg)
+        scale(1.08);
+    }
+
+    100%{
+
+        opacity:1;
+
+        transform:
+        perspective(1000px)
+        rotateX(0deg)
+        scale(1);
+    }
+}
+
+
+@keyframes logoFloat{
+
+    0%,100%{
+        transform:
+        perspective(1000px)
+        rotateY(-3deg)
+        translateY(0);
+    }
+
+    50%{
+        transform:
+        perspective(1000px)
+        rotateY(3deg)
+        translateY(-8px);
+    }
+}
+
+
+/* TITLE */
 
 .opening-title{
-  margin-top:25px;
-  font-size:32px;
-  letter-spacing:7px;
-  font-weight:bold;
-  animation:fade 2s ease;
+
+    position:relative;
+
+    z-index:2;
+
+    margin-top:20px;
+
+    font-size:clamp(24px,6vw,42px);
+
+    font-weight:900;
+
+    letter-spacing:8px;
+
+    text-shadow:
+
+        0 0 10px #fff,
+
+        0 0 25px #ff0000,
+
+        0 0 50px #ff0000;
+
+    animation:titleIn 1.5s 1.3s forwards;
+
+    opacity:0;
 }
 
-@keyframes fade{
-  from{opacity:0}
-  to{opacity:1}
+
+@keyframes titleIn{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(25px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
 }
 
-.enter{
-  margin-top:35px;
-  padding:15px 38px;
-  border:2px solid white;
-  border-radius:40px;
-  background:transparent;
-  color:white;
-  font-size:17px;
-  font-weight:bold;
-  cursor:pointer;
-  transition:.3s;
+
+/* ENTER BUTTON */
+
+.enter-btn{
+
+    position:relative;
+
+    z-index:2;
+
+    margin-top:40px;
+
+    padding:16px 48px;
+
+    border:2px solid white;
+
+    border-radius:50px;
+
+    background:rgba(0,0,0,.5);
+
+    color:white;
+
+    font-size:15px;
+
+    font-weight:bold;
+
+    letter-spacing:4px;
+
+    cursor:pointer;
+
+    opacity:0;
+
+    animation:
+        buttonIn 1.3s 1.8s forwards;
+
+    transition:.35s;
 }
 
-.enter:hover{
-  background:white;
-  color:black;
-  box-shadow:0 0 30px white;
+
+.enter-btn:hover{
+
+    background:white;
+
+    color:black;
+
+    transform:scale(1.08);
+
+    box-shadow:
+
+        0 0 15px white,
+
+        0 0 40px red,
+
+        0 0 80px red;
 }
 
-/* HOME */
+
+@keyframes buttonIn{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(25px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+}
+
+
+/* =========================
+   HOME
+========================= */
+
 #home{
-  min-height:100vh;
-  padding:50px 20px;
-  text-align:center;
-  background:
-    linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.9)),
-    radial-gradient(circle,#222,#000 70%);
+
+    display:none;
+
+    min-height:100vh;
+
+    padding:70px 20px;
+
+    text-align:center;
+
+    background:
+
+    radial-gradient(
+        circle at top,
+        #420000,
+        #090000 35%,
+        #020202 75%
+    );
 }
+
+
+/* HOME LOGO */
 
 .home-logo{
-  width:180px;
-  margin-top:20px;
-  filter:drop-shadow(0 0 20px rgba(255,255,255,.5));
+
+    width:min(60vw,300px);
+
+    margin:auto;
+
+    filter:
+
+        drop-shadow(0 0 10px white)
+
+        drop-shadow(0 0 35px red);
+
+    animation:homeFloat 4s infinite ease-in-out;
 }
 
-h1{
-  margin-top:20px;
-  font-size:42px;
-  letter-spacing:5px;
+
+@keyframes homeFloat{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-10px);
+    }
 }
 
-.subtitle{
-  margin-top:10px;
-  color:#aaa;
-  font-size:16px;
+
+#home h1{
+
+    margin-top:25px;
+
+    font-size:clamp(38px,9vw,65px);
+
+    letter-spacing:7px;
+
+    text-shadow:
+
+        0 0 15px white,
+
+        0 0 35px red;
 }
+
+
+.tagline{
+
+    margin-top:12px;
+
+    color:#aaa;
+
+    letter-spacing:4px;
+
+    font-size:14px;
+}
+
+
+/* =========================
+   CARDS
+========================= */
+
+.card{
+
+    max-width:600px;
+
+    margin:35px auto;
+
+    padding:32px 22px;
+
+    border:1px solid rgba(255,255,255,.12);
+
+    border-radius:24px;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.07),
+            rgba(0,0,0,.7)
+        );
+
+    box-shadow:
+
+        0 0 35px rgba(255,0,0,.12),
+
+        inset 0 0 25px rgba(255,255,255,.02);
+
+    backdrop-filter:blur(10px);
+}
+
 
 /* MUSIC */
-.music-box{
-  margin:35px auto;
-  max-width:420px;
-  padding:25px;
-  border:1px solid #333;
-  border-radius:20px;
-  background:#111;
-  box-shadow:0 0 30px rgba(255,255,255,.08);
-}
 
 .music-btn{
-  padding:13px 28px;
-  border:none;
-  border-radius:30px;
-  background:white;
-  color:black;
-  font-size:16px;
-  font-weight:bold;
-  cursor:pointer;
+
+    margin-top:20px;
+
+    padding:14px 30px;
+
+    border:1px solid white;
+
+    border-radius:40px;
+
+    background:#111;
+
+    color:white;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
 }
+
 
 .music-btn:hover{
-  transform:scale(1.05);
+
+    background:white;
+
+    color:black;
+
+    box-shadow:0 0 25px red;
 }
 
-/* INSTAGRAM */
+
+/* =========================
+   SOCIAL BUTTONS
+========================= */
+
+.social-buttons{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+
+    gap:15px;
+
+    margin-top:25px;
+}
+
+
+.social-btn{
+
+    display:inline-block;
+
+    min-width:210px;
+
+    padding:15px 22px;
+
+    border-radius:40px;
+
+    color:white;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+    transition:.3s;
+
+}
+
+
+.social-btn:hover{
+
+    transform:
+        translateY(-4px)
+        scale(1.03);
+
+    box-shadow:0 0 30px rgba(255,0,0,.5);
+}
+
+
 .instagram{
-  margin:40px auto;
-  max-width:500px;
-  padding:30px 20px;
-  border-radius:22px;
-  background:linear-gradient(145deg,#111,#050505);
-  border:1px solid #333;
+
+    background:
+    linear-gradient(
+        45deg,
+        #833ab4,
+        #fd1d1d,
+        #fcb045
+    );
 }
 
-.instagram h2{
-  font-size:27px;
-  margin-bottom:10px;
+
+.email{
+
+    background:
+    linear-gradient(
+        45deg,
+        #222,
+        #555
+    );
 }
 
-.instagram p{
-  color:#aaa;
-  margin-bottom:20px;
-}
-
-.insta-btn{
-  display:inline-block;
-  padding:14px 30px;
-  border-radius:30px;
-  text-decoration:none;
-  color:white;
-  font-weight:bold;
-  background:linear-gradient(45deg,#833ab4,#fd1d1d,#fcb045);
-  box-shadow:0 0 20px rgba(253,29,29,.3);
-}
-
-.insta-btn:hover{
-  transform:scale(1.05);
-}
 
 /* FOOTER */
+
 footer{
-  margin-top:50px;
-  padding:25px;
-  color:#777;
-  font-size:13px;
+
+    margin-top:60px;
+
+    padding:25px;
+
+    color:#666;
+
+    font-size:13px;
 }
+
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+    .logo-container{
+
+        width:80vw;
+
+    }
+
+    .enter-btn{
+
+        padding:14px 35px;
+
+    }
+
+    .card{
+
+        margin-left:5px;
+
+        margin-right:5px;
+
+    }
+
+}
+
 </style>
 </head>
 
+
 <body>
 
-<!-- OPENING PAGE -->
+
+<!-- =================================
+     OPENING
+================================= -->
+
 <section id="opening">
 
-  <!-- Logo -->
-  <img
-    src="logo.png"
-    class="logo"
-    alt="HAZARD 69 Logo"
-  >
 
-  <div class="opening-title">
-    HAZARD 69
-  </div>
+    <div class="logo-container">
 
-  <button class="enter" onclick="enterWebsite()">
-    ENTER WEBSITE
-  </button>
+        <img
+            src="logo.png"
+            alt="HAZARD 69 Official Logo">
+
+    </div>
+
+
+    <div class="opening-title">
+
+        HAZARD 69
+
+    </div>
+
+
+    <button
+        class="enter-btn"
+        onclick="enterWebsite()">
+
+        ENTER WEBSITE
+
+    </button>
+
 
 </section>
 
 
-<!-- MUSIC -->
-<audio id="bgMusic" loop>
-  <source src="Alan Walker_ Sabrina Carpenter_ Farruko - On My Way.mp3"
-          type="audio/mpeg">
+
+<!-- =================================
+     MUSIC
+================================= -->
+
+<audio
+    id="bgMusic"
+    preload="auto"
+    loop>
+
+    <source
+        src="music.mp3"
+        type="audio/mpeg">
+
 </audio>
 
 
-<!-- HOME -->
+
+<!-- =================================
+     HOME
+================================= -->
+
 <main id="home">
 
-  <img
-    src="logo.png"
-    class="home-logo"
-    alt="HAZARD 69"
-  >
 
-  <h1>HAZARD 69</h1>
-
-  <p class="subtitle">
-    OFFICIAL WEBSITE
-  </p>
+    <img
+        src="logo.png"
+        class="home-logo"
+        alt="HAZARD 69">
 
 
-  <!-- MUSIC PLAYER -->
-  <div class="music-box">
+    <h1>
 
-    <h2>🎵 Background Music</h2>
+        HAZARD 69
 
-    <br>
-
-    <button
-      class="music-btn"
-      id="musicButton"
-      onclick="toggleMusic()">
-      ▶ PLAY MUSIC
-    </button>
-
-  </div>
+    </h1>
 
 
-  <!-- INSTAGRAM -->
-  <section class="instagram">
+    <p class="tagline">
 
-    <h2>📸 Instagram</h2>
+        OFFICIAL WEBSITE
 
-    <p>
-      Follow HAZARD 69 on Instagram
     </p>
 
-    <a
-      class="insta-btn"
-      href="https://www.instagram.com/hazard_69_official/"
-      target="_blank">
-      FOLLOW ON INSTAGRAM
-    </a>
-
-  </section>
 
 
-  <footer>
-    © 2026 HAZARD 69 OFFICIAL
-  </footer>
+    <!-- MUSIC CARD -->
+
+    <section class="card">
+
+        <h2>
+
+            🎵 MUSIC
+
+        </h2>
+
+        <p style="margin-top:10px;color:#999;">
+
+            HAZARD 69 Official Music
+
+        </p>
+
+
+        <button
+            id="musicButton"
+            class="music-btn"
+            onclick="toggleMusic()">
+
+            ▶ PLAY MUSIC
+
+        </button>
+
+    </section>
+
+
+
+    <!-- SOCIAL CARD -->
+
+    <section class="card">
+
+        <h2>
+
+            🌐 CONNECT WITH US
+
+        </h2>
+
+
+        <div class="social-buttons">
+
+
+            <!-- INSTAGRAM -->
+
+            <a
+                class="social-btn instagram"
+
+                href="https://www.instagram.com/hazard_69_official/"
+
+                target="_blank"
+
+                rel="noopener noreferrer">
+
+                📸 INSTAGRAM
+
+            </a>
+
+
+
+            <!-- EMAIL -->
+
+            <a
+                class="social-btn email"
+
+                href="mailto:maxmahalder3@gmail.com">
+
+                ✉️ EMAIL US
+
+            </a>
+
+
+        </div>
+
+    </section>
+
+
+
+    <footer>
+
+        © 2026 HAZARD 69 OFFICIAL
+
+    </footer>
+
 
 </main>
 
 
+
 <script>
 
-const music = document.getElementById("bgMusic");
-const button = document.getElementById("musicButton");
 
+const music =
+    document.getElementById("bgMusic");
+
+
+const musicButton =
+    document.getElementById("musicButton");
+
+
+
+/* ENTER WEBSITE */
 
 function enterWebsite(){
 
-  document.getElementById("opening").style.opacity="0";
 
-  setTimeout(()=>{
-    document.getElementById("opening").style.display="none";
-  },1000);
+    const opening =
+        document.getElementById("opening");
 
-  /*
-    Browser autoplay restrictions:
-    Music starts after the user taps ENTER.
-  */
 
-  music.play()
-    .then(()=>{
-      button.innerHTML="⏸ PAUSE MUSIC";
+    opening.style.opacity="0";
+
+
+    setTimeout(function(){
+
+        opening.style.display="none";
+
+        document.getElementById("home")
+            .style.display="block";
+
+        document.body.style.overflow="auto";
+
+
+    },1000);
+
+
+
+    /*
+       Music starts after user interaction.
+       This works better on mobile browsers.
+    */
+
+    music.play()
+
+    .then(function(){
+
+        musicButton.innerHTML=
+            "⏸ PAUSE MUSIC";
+
     })
-    .catch(()=>{
-      button.innerHTML="▶ PLAY MUSIC";
+
+    .catch(function(){
+
+        musicButton.innerHTML=
+            "▶ PLAY MUSIC";
+
     });
+
 }
 
+
+
+/* MUSIC BUTTON */
 
 function toggleMusic(){
 
-  if(music.paused){
 
-    music.play()
-      .then(()=>{
-        button.innerHTML="⏸ PAUSE MUSIC";
-      });
+    if(music.paused){
 
-  }else{
 
-    music.pause();
-    button.innerHTML="▶ PLAY MUSIC";
+        music.play()
 
-  }
+        .then(function(){
+
+            musicButton.innerHTML=
+                "⏸ PAUSE MUSIC";
+
+        });
+
+
+    }else{
+
+
+        music.pause();
+
+
+        musicButton.innerHTML=
+            "▶ PLAY MUSIC";
+
+    }
 
 }
 
+
 </script>
+
 
 </body>
 </html>
-<!-- CONTACT SECTION -->
-<section class="contact">
-
-  <div class="contact-icon">📩</div>
-
-  <h2>CONTACT HAZARD 69</h2>
-
-  <p>
-    For business, collaboration or general enquiries
-  </p>
-
-  <div class="contact-buttons">
-
-    <a
-      href="mailto:maxmahalder3@gmail.com"
-      class="contact-btn">
-      ✉️ EMAIL US
-    </a>
-
-    <a
-      href="https://www.instagram.com/hazard_69_official/"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="contact-btn instagram-contact">
-      📸 INSTAGRAM
-    </a>
-
-  </div>
-
-</section>
