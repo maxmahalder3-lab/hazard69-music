@@ -2035,3 +2035,84 @@ document.addEventListener(
 
 </body>
 </html>
+<!-- GALLERY -->
+<section class="gallery-section" id="gallery">
+
+  <div class="gallery-title">
+    <span>PHOTO COLLECTION</span>
+
+    <h2>Gallery</h2>
+
+    <p>Add your HAZARD 69 photos</p>
+  </div>
+
+  <div class="gallery-upload">
+
+    <label for="galleryInput" class="btn">
+      📸 ADD PHOTOS
+    </label>
+
+    <input
+      type="file"
+      id="galleryInput"
+      class="gallery-input"
+      accept="image/*"
+      multiple>
+
+  </div>
+
+  <div
+    class="gallery-grid"
+    id="galleryGrid">
+  </div>
+
+</section>
+
+<script>
+
+const galleryInput =
+document.getElementById("galleryInput");
+
+const galleryGrid =
+document.getElementById("galleryGrid");
+
+galleryInput.addEventListener("change", function(){
+
+  Array.from(this.files).forEach(file => {
+
+    if(!file.type.startsWith("image/")) return;
+
+    const reader = new FileReader();
+
+    reader.onload = function(e){
+
+      const item =
+      document.createElement("div");
+
+      item.className = "gallery-item";
+
+      const img =
+      document.createElement("img");
+
+      img.src = e.target.result;
+
+      img.alt = "HAZARD 69 Photo";
+
+      item.appendChild(img);
+
+      galleryGrid.appendChild(item);
+
+    };
+
+    reader.readAsDataURL(file);
+
+  });
+
+  this.value = "";
+
+});
+
+</script>
+
+</body>
+</html>
