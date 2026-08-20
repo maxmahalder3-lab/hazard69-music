@@ -3,136 +3,171 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>HAZARD 69</title>
 
 <style>
 *{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
 body{
-  background:#000;
-  color:#fff;
-  font-family:Arial,sans-serif;
-  height:100vh;
-  overflow:hidden;
+    background:#000;
+    color:white;
+    font-family:Arial, sans-serif;
+    overflow:hidden;
 }
 
-#opening{
-  height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  background:
-    radial-gradient(circle,#222 0%,#050505 45%,#000 100%);
-  text-align:center;
+.opening{
+    position:fixed;
+    inset:0;
+    background:
+        radial-gradient(circle at center,#171717 0%,#050505 55%,#000 100%);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    z-index:10;
+    animation:fadeIn 1.5s ease;
 }
 
 .logo{
-  font-size:58px;
-  font-weight:900;
-  letter-spacing:8px;
-  color:#fff;
-  text-shadow:
-    0 0 10px #fff,
-    0 0 25px #ff0000,
-    0 0 50px #ff0000;
-  animation:pulse 1.5s infinite alternate;
+    font-size:clamp(55px,15vw,130px);
+    font-weight:900;
+    letter-spacing:10px;
+    color:white;
+    text-shadow:
+        0 0 10px #fff,
+        0 0 25px #777,
+        0 0 50px #333;
+    animation:logoIn 2s ease;
 }
 
 .subtitle{
-  margin-top:12px;
-  font-size:14px;
-  letter-spacing:6px;
-  color:#aaa;
+    margin-top:10px;
+    font-size:14px;
+    letter-spacing:6px;
+    color:#aaa;
+    animation:fadeUp 2s ease;
 }
 
 .enter{
-  margin-top:45px;
-  padding:16px 45px;
-  border:2px solid #ff2020;
-  border-radius:8px;
-  background:transparent;
-  color:#fff;
-  font-size:18px;
-  font-weight:bold;
-  letter-spacing:3px;
-  cursor:pointer;
-  box-shadow:0 0 15px #ff0000;
-  transition:.3s;
+    margin-top:45px;
+    padding:16px 45px;
+    border:2px solid white;
+    background:transparent;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    letter-spacing:4px;
+    cursor:pointer;
+    transition:.3s;
 }
 
 .enter:hover{
-  background:#ff2020;
-  box-shadow:0 0 35px #ff0000;
+    background:white;
+    color:black;
+    box-shadow:0 0 30px white;
 }
 
-#home{
-  display:none;
-  height:100vh;
-  padding:40px 20px;
-  text-align:center;
-  background:linear-gradient(135deg,#000,#180000,#000);
+.main{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    background:linear-gradient(135deg,#050505,#171717,#000);
 }
 
-#home h1{
-  font-size:45px;
-  text-shadow:0 0 20px red;
+.main h1{
+    font-size:50px;
+    letter-spacing:8px;
 }
 
-#home p{
-  margin-top:15px;
-  color:#bbb;
+.hidden{
+    display:none;
 }
 
-@keyframes pulse{
-  from{
-    transform:scale(1);
-    opacity:.8;
-  }
-  to{
-    transform:scale(1.06);
-    opacity:1;
-  }
+@keyframes logoIn{
+    0%{
+        opacity:0;
+        transform:scale(.5);
+        filter:blur(15px);
+    }
+    100%{
+        opacity:1;
+        transform:scale(1);
+        filter:blur(0);
+    }
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes fadeIn{
+    from{opacity:0}
+    to{opacity:1}
 }
 </style>
 </head>
 
 <body>
 
-<div id="opening">
-  <div class="logo">HAZARD 69</div>
-  <div class="subtitle">OFFICIAL WEBSITE</div>
-
-  <button class="enter" onclick="enterWebsite()">
-    ENTER WEBSITE
-  </button>
-</div>
-
-<div id="home">
-  <h1>HAZARD 69</h1>
-  <p>Welcome to the official website.</p>
-</div>
-
+<!-- BACKGROUND MUSIC -->
 <audio id="music" loop>
-  <source src="Alan%20Walker_%20Sabrina%20Carpenter%20_%20Farruko%20-%20On%20My%20Way(MP3_160K).mp3" type="audio/mpeg">
+    <source src="Alan%20Walker_%20Sabrina%20Carpenter%20_%20Farruko%20-%20On%20My%20Way(MP3_160K).mp3" type="audio/mpeg">
 </audio>
 
+<!-- OPENING PAGE -->
+<div class="opening" id="opening">
+
+    <div class="logo">HAZARD 69</div>
+
+    <div class="subtitle">
+        OFFICIAL WEBSITE
+    </div>
+
+    <button class="enter" onclick="enterWebsite()">
+        ENTER WEBSITE
+    </button>
+
+</div>
+
+<!-- MAIN WEBSITE -->
+<div class="main hidden" id="main">
+
+    <div>
+        <h1>HAZARD 69</h1>
+        <p>Welcome to the official website</p>
+    </div>
+
+</div>
+
 <script>
+
 function enterWebsite(){
 
-  const music = document.getElementById("music");
+    const music = document.getElementById("music");
 
-  music.play().catch(function(error){
-    console.log("Music could not start:", error);
-  });
+    music.play().catch(function(){
+        console.log("Music playback requires user interaction.");
+    });
 
-  document.getElementById("opening").style.display="none";
-  document.getElementById("home").style.display="block";
+    document.getElementById("opening").style.display = "none";
+    document.getElementById("main").classList.remove("hidden");
 }
+
 </script>
 
 </body>
