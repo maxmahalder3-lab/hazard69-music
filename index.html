@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>HAZARD 69 OFFICIAL</title>
 
 <style>
@@ -13,182 +12,298 @@
   box-sizing:border-box;
 }
 
-html{
-  scroll-behavior:smooth;
-}
-
 body{
   background:#000;
   color:#fff;
   font-family:Arial,Helvetica,sans-serif;
+  overflow:hidden;
 }
 
-/* OPENING */
+/* ===== OPENING ===== */
+
 #opening{
   position:fixed;
   inset:0;
-  min-height:100vh;
+  z-index:9999;
+
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
-  text-align:center;
+
   background:
-    radial-gradient(circle at center,#222 0%,#080808 50%,#000 100%);
-  z-index:999;
+    radial-gradient(circle at center,
+    #242424 0%,
+    #090909 45%,
+    #000 100%);
+
+  animation:openingIn 1.5s ease;
 }
+
+/* Background glow */
+
+#opening::before{
+  content:"";
+  position:absolute;
+  width:350px;
+  height:350px;
+  border-radius:50%;
+  background:#ff0000;
+  filter:blur(130px);
+  opacity:.18;
+  animation:redGlow 2s infinite alternate;
+}
+
+/* LOGO */
 
 .logo{
-  font-size:clamp(55px,14vw,120px);
-  font-weight:900;
-  letter-spacing:10px;
-  text-shadow:
-    0 0 10px #fff,
-    0 0 30px #f00,
-    0 0 60px #f00;
-  animation:logoGlow 1.8s infinite alternate;
+  position:relative;
+  width:min(75vw,500px);
+
+  opacity:0;
+  transform:scale(.5);
+  animation:logoEnter 2s .4s forwards;
 }
+
+.logo img{
+  width:100%;
+  height:auto;
+  display:block;
+
+  filter:
+    drop-shadow(0 0 8px #fff)
+    drop-shadow(0 0 25px #ff0000)
+    drop-shadow(0 0 55px #ff0000);
+
+  animation:logoPulse 2s 2.4s infinite alternate;
+}
+
+/* Subtitle */
 
 .subtitle{
-  margin-top:12px;
+  position:relative;
+
+  margin-top:18px;
+
   font-size:14px;
-  letter-spacing:6px;
+  letter-spacing:7px;
   color:#aaa;
+
+  opacity:0;
+  animation:fadeUp 1.2s 1.7s forwards;
 }
 
+/* ENTER BUTTON */
+
 .enter{
+  position:relative;
+
   margin-top:45px;
-  padding:16px 42px;
+
+  padding:16px 48px;
+
   border:2px solid #fff;
-  border-radius:40px;
+  border-radius:50px;
+
   background:transparent;
   color:#fff;
+
   font-size:16px;
   font-weight:bold;
-  letter-spacing:3px;
+  letter-spacing:4px;
+
   cursor:pointer;
-  transition:.3s;
+
+  opacity:0;
+  animation:fadeUp 1.2s 2s forwards;
+
+  transition:.35s;
 }
 
 .enter:hover{
   background:#fff;
   color:#000;
-  box-shadow:0 0 35px #fff;
+
+  transform:scale(1.06);
+
+  box-shadow:
+    0 0 15px #fff,
+    0 0 40px #ff0000;
 }
 
-/* HOME */
+/* ===== HOME ===== */
+
 #home{
   display:none;
+
   min-height:100vh;
-  background:
-    linear-gradient(135deg,#000,#160000,#000);
+
+  padding:70px 20px;
+
   text-align:center;
-  padding-bottom:60px;
+
+  background:
+    radial-gradient(circle at top,#250000,#050505 55%,#000);
 }
 
-.hero{
-  padding:80px 20px 50px;
+.home-logo{
+  width:min(60vw,300px);
+  margin:auto;
 }
 
-.hero h1{
-  font-size:clamp(40px,10vw,75px);
-  letter-spacing:8px;
+.home-logo img{
+  width:100%;
+
+  filter:
+    drop-shadow(0 0 10px #fff)
+    drop-shadow(0 0 30px #ff0000);
+}
+
+#home h1{
+  margin-top:25px;
+
+  font-size:42px;
+  letter-spacing:7px;
+
   text-shadow:0 0 25px red;
 }
 
-.hero p{
-  margin-top:15px;
+#home p{
+  margin-top:12px;
+
   color:#aaa;
   letter-spacing:3px;
 }
 
 /* INSTAGRAM */
+
 .instagram{
-  max-width:600px;
-  margin:20px auto;
-  padding:35px 20px;
+  max-width:500px;
+
+  margin:40px auto;
+
+  padding:30px 20px;
+
   border:1px solid #333;
   border-radius:20px;
-  background:rgba(255,255,255,.04);
-  box-shadow:0 0 30px rgba(255,0,0,.15);
-}
 
-.instagram-icon{
-  font-size:55px;
-  margin-bottom:15px;
+  background:rgba(255,255,255,.04);
+
+  box-shadow:
+    0 0 30px rgba(255,0,0,.15);
 }
 
 .instagram h2{
-  font-size:28px;
-  letter-spacing:3px;
+  margin-bottom:10px;
 }
 
-.username{
-  margin-top:10px;
-  color:#aaa;
-  font-size:18px;
-}
-
-.follow-btn{
+.instagram a{
   display:inline-block;
-  margin-top:25px;
-  padding:14px 30px;
+
+  margin-top:20px;
+
+  padding:13px 28px;
+
   border-radius:30px;
-  background:linear-gradient(45deg,#ff0050,#ff7a00,#8a2be2);
+
   color:#fff;
   text-decoration:none;
+
+  background:linear-gradient(
+    45deg,
+    #ff0050,
+    #ff7a00,
+    #8a2be2
+  );
+
   font-weight:bold;
-  letter-spacing:2px;
-  transition:.3s;
 }
 
-.follow-btn:hover{
-  transform:scale(1.05);
-  box-shadow:0 0 25px #ff0050;
-}
-
-/* MUSIC */
-.music-btn{
+.music{
   margin-top:20px;
+
   padding:12px 25px;
+
   border:1px solid #fff;
-  border-radius:25px;
+  border-radius:30px;
+
   background:transparent;
   color:#fff;
+
   cursor:pointer;
 }
 
-/* FOOTER */
-footer{
-  margin-top:50px;
-  color:#666;
-  font-size:13px;
+/* ===== ANIMATIONS ===== */
+
+@keyframes openingIn{
+  from{opacity:0}
+  to{opacity:1}
 }
 
-/* ANIMATION */
-@keyframes logoGlow{
+@keyframes logoEnter{
+
+  0%{
+    opacity:0;
+    transform:scale(.5) rotate(-3deg);
+    filter:blur(20px);
+  }
+
+  60%{
+    opacity:1;
+    transform:scale(1.08) rotate(0);
+    filter:blur(0);
+  }
+
+  100%{
+    opacity:1;
+    transform:scale(1);
+  }
+}
+
+@keyframes logoPulse{
+
   from{
     transform:scale(1);
-    text-shadow:
-      0 0 10px #fff,
-      0 0 25px #f00,
-      0 0 45px #f00;
   }
 
   to{
-    transform:scale(1.06);
-    text-shadow:
-      0 0 15px #fff,
-      0 0 40px #f00,
-      0 0 80px #f00;
+    transform:scale(1.04);
+  }
+}
+
+@keyframes fadeUp{
+
+  from{
+    opacity:0;
+    transform:translateY(25px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+@keyframes redGlow{
+
+  from{
+    transform:scale(.8);
+    opacity:.12;
+  }
+
+  to{
+    transform:scale(1.3);
+    opacity:.25;
   }
 }
 </style>
 </head>
 
+
 <body>
 
-<!-- BACKGROUND MUSIC -->
+<!-- MUSIC -->
+
 <audio id="music" loop>
   <source
     src="Alan%20Walker_%20Sabrina%20Carpenter%20_%20Farruko%20-%20On%20My%20Way(MP3_160K).mp3"
@@ -196,11 +311,12 @@ footer{
 </audio>
 
 
-<!-- OPENING PAGE -->
+<!-- OPENING -->
+
 <section id="opening">
 
   <div class="logo">
-    HAZARD 69
+    <img src="logo.png" alt="HAZARD 69">
   </div>
 
   <div class="subtitle">
@@ -214,48 +330,37 @@ footer{
 </section>
 
 
-<!-- HOME PAGE -->
+<!-- HOME -->
+
 <section id="home">
 
-  <div class="hero">
-    <h1>HAZARD 69</h1>
-    <p>WELCOME TO THE OFFICIAL WEBSITE</p>
+  <div class="home-logo">
+    <img src="logo.png" alt="HAZARD 69">
   </div>
 
+  <h1>HAZARD 69</h1>
 
-  <!-- INSTAGRAM SECTION -->
+  <p>WELCOME TO THE OFFICIAL WEBSITE</p>
+
+
   <div class="instagram">
 
-    <div class="instagram-icon">
-      📸
-    </div>
+    <h2>📸 HAZARD 69 OFFICIAL</h2>
 
-    <h2>HAZARD 69 OFFICIAL</h2>
-
-    <div class="username">
-      @hazard_69_official
-    </div>
+    <p>@hazard_69_official</p>
 
     <a
-      class="follow-btn"
       href="https://www.instagram.com/hazard_69_official/"
-      target="_blank"
-      rel="noopener noreferrer">
+      target="_blank">
       FOLLOW ON INSTAGRAM
     </a>
 
   </div>
 
 
-  <!-- MUSIC BUTTON -->
-  <button class="music-btn" onclick="toggleMusic()">
+  <button class="music" onclick="toggleMusic()">
     🎵 PLAY / PAUSE MUSIC
   </button>
-
-
-  <footer>
-    © 2026 HAZARD 69 OFFICIAL
-  </footer>
 
 </section>
 
@@ -264,27 +369,41 @@ footer{
 
 function enterWebsite(){
 
-  const music = document.getElementById("music");
+  const music =
+    document.getElementById("music");
 
   music.play().catch(function(){
-    console.log("Music playback was blocked.");
+
+    console.log(
+      "Music playback requires user interaction."
+    );
+
   });
 
-  document.getElementById("opening").style.display = "none";
+  document.getElementById(
+    "opening"
+  ).style.display="none";
 
-  document.getElementById("home").style.display = "block";
+  document.getElementById(
+    "home"
+  ).style.display="block";
 
 }
 
 
 function toggleMusic(){
 
-  const music = document.getElementById("music");
+  const music =
+    document.getElementById("music");
 
   if(music.paused){
-    music.play().catch(function(){});
+
+    music.play();
+
   }else{
+
     music.pause();
+
   }
 
 }
@@ -293,3 +412,8 @@ function toggleMusic(){
 
 </body>
 </html>
+hazard69-music/
+│
+├── index.html
+├── logo.png
+└── Alan Walker...mp3
